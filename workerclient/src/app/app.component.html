@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="item" *ngIf="connected"><span>CONNECTED</span></div>
+</div>
+<form [formGroup]="calculationForm">
+  <input type="number" formControlName="a" placeholder="First value">
+  <input type="number" formControlName="b" placeholder="Second value">
+  <select formControlName="calculationType">
+    <option disabled [ngValue]="undefined">Select calcutation type</option>
+    <option [ngValue]="'Addition'">+</option>
+    <option [ngValue]="'Subtraction'">-</option>
+    <option [ngValue]="'Multiplication'">*</option>
+    <option [ngValue]="'Division'">/</option>
+  </select>
+  <button (click)="submitCalculation($event)">Submit</button>
+  <span>{{requests}} requests submitted</span>
+</form>
+
+<div class="container">
+  <span>{{results.length}} results received</span>
+
+  <div class="item" *ngFor="let result of results"><span>{{result.a}}{{result.type | calculationtype}}{{result.b}} =
+      {{result.result}}</span></div>
+</div>
